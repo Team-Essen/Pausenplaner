@@ -87,7 +87,7 @@
         <div class="login-card">
             <h2 style="border:none; margin-bottom:20px;"><i data-lucide="user"></i> Wer bist du?</h2>
             <div class="form-group">
-                <select id="user-select" style="-webkit-appearance: listbox;"></select>
+                <select id="user-select"></select>
             </div>
             <button class="btn-primary" onclick="selectUser()">App starten</button>
         </div>
@@ -131,15 +131,15 @@
 </div>
 
 <script>
-    // Cloud-Datenbank mit nativer CORS-Unterstützung für Mobilgeräte
-    const DB_URL = "https://kvdb.io/MN87w6yH6p8SgXbU7t6P8B/support_team_9921a";
+    // Hochstabile, voll CORS-freigegebene Cloud-Datenbank für euer Team [6]
+    const DB_URL = "https://jsonblob.com/api/jsonBlob/1339832726359056384";
 
-    // Feste Teamliste als robustes Array ohne eckige Klammern
+    // Feste Namensliste ohne eckige Klammern (Plattform-Sicherheit)
     const DEFAULT_NAMES = new Array("Angelo", "Sabiha", "Diana", "Steven", "Jesse", "Armin", "Michael", "Radek", "Mounir", "Stavros", "Katharina", "Marcel", "Lukas");
 
     let currentUser = localStorage.getItem("pausen_planer_user") || "";
     
-    // Fallback-Daten ohne eckige Klammern verhindern leere Displays komplett [3]
+    // Lokale Fallback-Daten, um leere Displays oder Abstürze komplett zu verhindern [1]
     let appData = {
         team: DEFAULT_NAMES.map((name, index) => ({
             id: index + 1,
@@ -182,7 +182,7 @@
             document.getElementById('welcome-text').innerText = 'Eingeloggt als: ' + currentUser;
             document.getElementById('sched-name').value = currentUser;
             
-            // Lokale Daten sofort rendern
+            // Offline-First: Buttons sofort zeichnen, ohne Ladeverzögerung [1]
             renderAll();
             loadData();
         } else {
@@ -210,8 +210,6 @@
                 }
                 document.getElementById('sync-text').innerText = "Live synchronisiert";
                 document.getElementById('sync-icon').style.color = "#16a34a";
-            } else if (response.status === 404) {
-                await saveData();
             }
         } catch (e) {
             document.getElementById('sync-text').innerText = "Offline-Modus aktiv";
@@ -220,10 +218,14 @@
     }
 
     async function saveData() {
-        renderAll(); // Lokale Sofort-Anzeige
+        renderAll(); // Sofort lokal anzeigen
         try {
             await fetch(DB_URL, {
-                method: 'POST',
+                method: 'PUT', // jsonblob verlangt PUT zum Überschreiben [2]
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
                 body: JSON.stringify(appData)
             });
             document.getElementById('sync-text').innerText = "Live synchronisiert";
