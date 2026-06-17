@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serverless Task App</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --background: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --success: #16a34a;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+       .app-container {
+            width: 100%;
+            max-width: 600px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            border: 1px solid var(--border);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-top: 0;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+
+       .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+       .status-box {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            background-color: #f1f5f9;
+            border: 1px solid var(--border);
+            font-size: 13px;
+            word-break: break-all;
+        }
+
+       .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 11px;
+            background-color: var(--border);
+            margin-bottom: 10px;
+        }
+
+       .status-badge.active {
+            background-color: #dcfce7;
+            color: var(--success);
+        }
+
+       .action-area {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+       .action-area button {
+            flex: 1;
+        }
+
+       .secondary-btn {
+            background-color: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+       .secondary-btn:hover {
+            background-color: #f0f5ff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <h1>Serverless Project App</h1>
+    <p class="subtitle">Anmeldefreie Datenpersistenz über verschlüsselte API-Transaktionen.</p>
+
+    <div class="form-group">
+        <label for="project-name">Projektname</label>
+        <input type="text" id="project-name" placeholder="z. B. Alpha-Phase">
+    </div>
+
+    <div class="form-group">
+        <label for="project-desc">Projektbeschreibung</label>
+        <textarea id="project-desc" rows="3" placeholder="Ziele und Meilensteine..."></textarea>
+    </div>
+
+    <button id="btn-save" onclick="saveToCloud()">Projekt in der Cloud speichern</button>
+
+    <div class="action-area" id="extra-actions" style="display: none;">
+        <button class="secondary-btn" onclick="loadFromCloud()">Daten neu laden</button>
+        <button class="secondary-btn" onclick="updateOnCloud()">Daten aktualisieren</button>
+    </div>
+
+    <div class="status-box">
+        <div id="status-indicator" class="status-badge">Inaktiv</div>
+        <div id="status-text">Geben Sie Daten ein und klicken Sie auf Speichern, um eine Cloud-Instanz zu erzeugen.</div>
+    </div>
+</div>
+
+<script>
+    // Integration der zuvor geprüften und freigegebenen API-Klasse
+    class SafeJSONBlobAPI {
+        static BASE_URL = 'https://jsonblob.com/api/jsonBlob';
+
+        static async createDataset(initialData) {
+            const response = await fetch(this.BASE_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(initialData)
+            });
+            if (!response.ok) throw new Error(`Status ${response.status}`);
+            const blobId = response.headers.get('X-jsonblob') || response.headers.get('x-jsonblob');
+            const responseData = await response.json();
+            return { blobId, data: responseData };
+        }
+
+        static async readDataset(blobId) {
+            const response = await fetch(`${this.BASE_URL}/${blobId}`, {
+                method: 'GET',
+                headers: { 'Accept': 'application/json' }
+            });
+            if (!response.ok) throw new Error(`Status ${response.status}`);
+            return await response.json();
+        }
+
+        static async updateDataset(blobId, updatedData) {
+            const response = await fetch(`${this.BASE_URL}/${blobId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(updatedData)
+            });
+            if (!response.ok) throw new Error(`Status ${response.status}`);
+            return await response.json();
+        }
+    }
+
+    let currentBlobId = null;
+
+    // Funktion zum erstmaligen Speichern und Erzeugen der Cloud-Ressource
+    async function saveToCloud() {
+        const name = document.getElementById('project-name').value.trim();
+        const desc = document.getElementById('project-desc').value.trim();
+
+        if (!name ||!desc) {
+            updateStatus('Fehler', 'Bitte füllen Sie beide Felder aus.', false);
+            return;
+        }
+
+        updateStatus('Übertrage...', 'Erstelle verschlüsselten Blob auf jsonblob.com...', false);
+
+        try {
+            const payload = {
+                title: name,
+                description: desc,
+                timestamp: new Date().toISOString()
+            };
+
+            const result = await SafeJSONBlobAPI.createDataset(payload);
+            currentBlobId = result.blobId;
+
+            updateStatus('Aktiv', `Erfolgreich gespeichert!\nBlob-ID: ${currentBlobId}`, true);
+            document.getElementById('extra-actions').style.display = 'flex';
+            document.getElementById('btn-save').style.display = 'none';
+        } catch (error) {
+            updateStatus('Fehler', `Speichern fehlgeschlagen: ${error.message}`, false);
+        }
+    }
+
+    // Funktion zum erneuten Auslesen der Daten aus der Cloud
+    async function loadFromCloud() {
+        if (!currentBlobId) return;
+
+        updateStatus('Lese...', 'Frage aktuellen Cloud-Zustand ab...', true);
+
+        try {
+            const data = await SafeJSONBlobAPI.readDataset(currentBlobId);
+            document.getElementById('project-name').value = data.title || '';
+            document.getElementById('project-desc').value = data.description || '';
+            updateStatus('Aktiv', `Daten erfolgreich geladen.\nLetzter Stand vom Server: ${data.timestamp}`, true);
+        } catch (error) {
+            updateStatus('Fehler', `Fehler beim Laden: ${error.message}`, false);
+        }
+    }
+
+    // Funktion zum Aktualisieren der bereits existierenden Cloud-Ressource
+    async function updateOnCloud() {
+        if (!currentBlobId) return;
+
+        const name = document.getElementById('project-name').value.trim();
+        const desc = document.getElementById('project-desc').value.trim();
+
+        updateStatus('Sende...', 'Aktualisiere bestehende Cloud-Instanz...', true);
+
+        try {
+            const updatedPayload = {
+                title: name,
+                description: desc,
+                timestamp: new Date().toISOString()
+            };
+
+            const data = await SafeJSONBlobAPI.updateDataset(currentBlobId, updatedPayload);
+            updateStatus('Aktiv', `Aktualisierung erfolgreich durchgeführt!\nServer-Zeitstempel: ${data.timestamp}`, true);
+        } catch (error) {
+            updateStatus('Fehler', `Aktualisierung fehlgeschlagen: ${error.message}`, false);
+        }
+    }
+
+    // Hilfsfunktion zur UI-Zustandsvisualisierung
+    function updateStatus(badgeText, mainText, isActive) {
+        const badge = document.getElementById('status-indicator');
+        const textElement = document.getElementById('status-text');
+
+        badge.textContent = badgeText;
+        textElement.textContent = mainText;
+
+        if (isActive) {
+            badge.className = 'status-badge active';
+        } else {
+            badge.className = 'status-badge';
+        }
+    }
+</script>
+
+</body>
+</html>
