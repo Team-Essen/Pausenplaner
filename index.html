@@ -19,7 +19,7 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-color); padding: 15px; }
-       .container { max-width: 1200px; margin: 0 auto; }
+      .container { max-width: 1200px; margin: 0 auto; }
         
         header {
             display: flex;
@@ -33,18 +33,17 @@
         }
 
         h1 { font-size: 18px; color: var(--primary); display: flex; align-items: center; gap: 10px; }
-       .sync-indicator { font-size: 12px; color: #16a34a; display: flex; align-items: center; gap: 5px; font-weight: bold; }
-       .user-welcome { font-size: 13px; font-weight: bold; color: #555; }
+      .sync-indicator { font-size: 12px; color: #16a34a; display: flex; align-items: center; gap: 5px; font-weight: bold; }
+      .user-welcome { font-size: 13px; font-weight: bold; color: #555; }
         
-       .grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+      .grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
 
-       .card { background: var(--card-bg); padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom: 20px; }
+      .card { background: var(--card-bg); padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom: 20px; }
         h2 { font-size: 16px; margin-bottom: 15px; border-bottom: 2px solid var(--border); padding-bottom: 8px; }
 
-       .form-group { margin-bottom: 15px; }
+      .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 13px; }
         
-        /* 16px verhindert den störenden automatischen Zoom auf iPhones */
         input, select { 
             width: 100%; 
             padding: 12px; 
@@ -57,28 +56,28 @@
         select:disabled { background-color: #f3f4f6; color: #374151; opacity: 1; cursor: not-allowed; }
 
         button { width: 100%; padding: 12px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; }
-       .btn-primary { background: var(--primary); color: white; }
+      .btn-primary { background: var(--primary); color: white; }
         
-       .status-badge { padding: 4px 8px; border-radius: 20px; font-size: 11px; font-weight: bold; display: inline-block; }
-       .status-av { background: #dcfce7; color: var(--success); }
-       .status-mid { background: #ffedd5; color: var(--warning); }
-       .status-scr { background: #fee2e2; color: var(--danger); }
+      .status-badge { padding: 4px 8px; border-radius: 20px; font-size: 11px; font-weight: bold; display: inline-block; }
+      .status-av { background: #dcfce7; color: var(--success); }
+      .status-mid { background: #ffedd5; color: var(--warning); }
+      .status-scr { background: #fee2e2; color: var(--danger); }
 
-       .team-member { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid var(--border); }
-       .member-info { display: flex; flex-direction: column; gap: 4px; }
-       .timer { font-family: monospace; font-weight: bold; font-size: 13px; color: #555; margin-left: 5px; }
+      .team-member { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid var(--border); }
+      .member-info { display: flex; flex-direction: column; gap: 4px; }
+      .timer { font-family: monospace; font-weight: bold; font-size: 13px; color: #555; margin-left: 5px; }
 
-       .actions { display: flex; gap: 4px; }
-       .btn-sm { padding: 8px 10px; font-size: 11px; width: auto; border-radius: 4px; font-weight: 600; }
-       .btn-success { background: var(--success); color: white; }
-       .btn-warning { background: var(--warning); color: white; }
-       .btn-danger { background: var(--danger); color: white; }
+      .actions { display: flex; gap: 4px; }
+      .btn-sm { padding: 8px 10px; font-size: 11px; width: auto; border-radius: 4px; font-weight: 600; }
+      .btn-success { background: var(--success); color: white; }
+      .btn-warning { background: var(--warning); color: white; }
+      .btn-danger { background: var(--danger); color: white; }
         
         #login-screen { display: flex; justify-content: center; align-items: center; height: 80vh; }
-       .login-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: center; width: 100%; max-width: 350px; }
+      .login-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: center; width: 100%; max-width: 350px; }
 
-       .schedule-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; background: var(--bg-color); margin-bottom: 8px; border-radius: 6px; }
-       .btn-link { background: none; color: #666; font-size: 12px; text-decoration: underline; padding: 0; width: auto; font-weight: normal; margin-top: 10px; border: none; }
+      .schedule-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; background: var(--bg-color); margin-bottom: 8px; border-radius: 6px; }
+      .btn-link { background: none; color: #666; font-size: 12px; text-decoration: underline; padding: 0; width: auto; font-weight: normal; margin-top: 10px; border: none; }
     </style>
 </head>
 <body>
@@ -88,7 +87,7 @@
         <div class="login-card">
             <h2 style="border:none; margin-bottom:20px;"><i data-lucide="user"></i> Wer bist du?</h2>
             <div class="form-group">
-                <select id="user-select"></select>
+                <select id="user-select" style="-webkit-appearance: listbox;"></select>
             </div>
             <button class="btn-primary" onclick="selectUser()">App starten</button>
         </div>
@@ -132,15 +131,15 @@
 </div>
 
 <script>
-    // Hochstabile, CORS-freigegebene Cloud-Datenbank [1, 2]
-    const DB_URL = "https://jsonblob.com/api/jsonBlob/1339832726359056384";
+    // Cloud-Datenbank mit nativer CORS-Unterstützung für Mobilgeräte
+    const DB_URL = "https://kvdb.io/MN87w6yH6p8SgXbU7t6P8B/support_team_9921a";
 
-    // Eure exakte Teamliste
-    const DEFAULT_NAMES =;
+    // Feste Teamliste als robustes Array ohne eckige Klammern
+    const DEFAULT_NAMES = new Array("Angelo", "Sabiha", "Diana", "Steven", "Jesse", "Armin", "Michael", "Radek", "Mounir", "Stavros", "Katharina", "Marcel", "Lukas");
 
     let currentUser = localStorage.getItem("pausen_planer_user") || "";
     
-    // Lokale Fallback-Daten, um leere Listen oder Abstürze komplett zu verhindern [1]
+    // Fallback-Daten ohne eckige Klammern verhindern leere Displays komplett [3]
     let appData = {
         team: DEFAULT_NAMES.map((name, index) => ({
             id: index + 1,
@@ -149,14 +148,14 @@
             timeLeft: 0,
             lastUpdate: Date.now()
         })),
-        schedules:
+        schedules: new Array()
     };
 
     function initUserDropdowns() {
         const userSelect = document.getElementById('user-select');
         const schedSelect = document.getElementById('sched-name');
         if (userSelect && schedSelect) {
-            const optionsHtml = DEFAULT_NAMES.map(n => `<option value="${n}">${n}</option>`).join('');
+            const optionsHtml = DEFAULT_NAMES.map(n => '<option value="' + n + '">' + n + '</option>').join('');
             userSelect.innerHTML = optionsHtml;
             schedSelect.innerHTML = optionsHtml;
         }
@@ -180,10 +179,10 @@
         if (currentUser) {
             document.getElementById('login-screen').style.display = 'none';
             document.getElementById('app-content').style.display = 'block';
-            document.getElementById('welcome-text').innerText = `Eingeloggt als: ${currentUser}`;
+            document.getElementById('welcome-text').innerText = 'Eingeloggt als: ' + currentUser;
             document.getElementById('sched-name').value = currentUser;
             
-            // Offline-First: Zeichnet die Buttons sofort lokal [1]
+            // Lokale Daten sofort rendern
             renderAll();
             loadData();
         } else {
@@ -211,6 +210,8 @@
                 }
                 document.getElementById('sync-text').innerText = "Live synchronisiert";
                 document.getElementById('sync-icon').style.color = "#16a34a";
+            } else if (response.status === 404) {
+                await saveData();
             }
         } catch (e) {
             document.getElementById('sync-text').innerText = "Offline-Modus aktiv";
@@ -219,14 +220,10 @@
     }
 
     async function saveData() {
-        renderAll(); // Sofort lokal anzeigen
+        renderAll(); // Lokale Sofort-Anzeige
         try {
             await fetch(DB_URL, {
-                method: 'PUT', // jsonblob verlangt PUT zum Überschreiben [3]
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
+                method: 'POST',
                 body: JSON.stringify(appData)
             });
             document.getElementById('sync-text').innerText = "Live synchronisiert";
@@ -265,28 +262,26 @@
                 const mins = Math.floor(Math.abs(currentTimerValue) / 60);
                 const secs = Math.abs(currentTimerValue) % 60;
                 const sign = currentTimerValue < 0? "-" : "";
-                timerDisplay = `<span class="timer">${sign}${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}</span>`;
+                timerDisplay = '<span class="timer">' + sign + mins.toString().padStart(2, '0') + ':' + secs.toString().padStart(2, '0') + '</span>';
             }
 
             const isMe = member.name === currentUser;
             const disabledAttr = isMe? "" : "disabled style='opacity:0.3; cursor:not-allowed;'";
 
-            list.innerHTML += `
-                <div class="team-member" style="${isMe? 'background: #eff6ff; border-radius: 8px; border-left: 4px solid var(--primary);' : ''}">
-                    <div class="member-info">
-                        <strong>${member.name} ${isMe? '(Du)' : ''}</strong>
-                        <div>
-                            <span class="status-badge ${statusClass}">${member.status}</span>
-                            ${timerDisplay}
-                        </div>
-                    </div>
-                    <div class="actions">
-                        <button class="btn-sm btn-success" ${disabledAttr} onclick="changeStatus(${member.id}, 'Verfügbar')">Bereit</button>
-                        <button class="btn-sm btn-warning" ${disabledAttr} onclick="changeStatus(${member.id}, 'Mittagspause')">Mittag</button>
-                        <button class="btn-sm btn-danger" ${disabledAttr} onclick="changeStatus(${member.id}, 'Bildschirmpause')">Bildschirm</button>
-                    </div>
-                </div>
-            `;
+            list.innerHTML += '<div class="team-member" style="' + (isMe? 'background: #eff6ff; border-radius: 8px; border-left: 4px solid var(--primary);' : '') + '">' +
+                '<div class="member-info">' +
+                    '<strong>' + member.name + ' ' + (isMe? '(Du)' : '') + '</strong>' +
+                    '<div>' +
+                        '<span class="status-badge ' + statusClass + '">' + member.status + '</span>' +
+                        timerDisplay +
+                    '</div>' +
+                '</div>' +
+                '<div class="actions">' +
+                    '<button class="btn-sm btn-success" ' + disabledAttr + ' onclick="changeStatus(' + member.id + ', \'Verfügbar\')">Bereit</button>' +
+                    '<button class="btn-sm btn-warning" ' + disabledAttr + ' onclick="changeStatus(' + member.id + ', \'Mittagspause\')">Mittag</button>' +
+                    '<button class="btn-sm btn-danger" ' + disabledAttr + ' onclick="changeStatus(' + member.id + ', \'Bildschirmpause\')">Bildschirm</button>' +
+                '</div>' +
+            '</div>';
         });
         lucide.createIcons();
     }
@@ -296,7 +291,7 @@
         if (!list) return;
         
         if (!appData ||!Array.isArray(appData.schedules)) {
-            appData.schedules =;
+            appData.schedules = new Array();
         }
 
         if(appData.schedules.length === 0) {
@@ -309,14 +304,12 @@
 
         appData.schedules.forEach(s => {
             const isMySchedule = s.name === currentUser;
-            const deleteBtn = isMySchedule? `<button style="background:none; color:red; border:none; width:auto; padding:0; display:inline;" onclick="deleteSchedule(${s.id})">×</button>` : '';
+            const deleteBtn = isMySchedule? '<button style="background:none; color:red; border:none; width:auto; padding:0; display:inline;" onclick="deleteSchedule(' + s.id + ')">×</button>' : '';
 
-            list.innerHTML += `
-                <div class="schedule-item" style="border-left: 4px solid var(--warning); ${isMySchedule? 'background: #fffbfa;' : ''}">
-                    <span><strong>${s.time} - ${add30Mins(s.time)} Uhr</strong> (${s.name})</span>
-                    ${deleteBtn}
-                </div>
-            `;
+            list.innerHTML += '<div class="schedule-item" style="border-left: 4px solid var(--warning); ' + (isMySchedule? 'background: #fffbfa;' : '') + '">' +
+                '<span><strong>' + s.time + ' - ' + add30Mins(s.time) + ' Uhr</strong> (' + s.name + ')</span>' +
+                deleteBtn +
+            '</div>';
         });
         lucide.createIcons();
     }
@@ -344,11 +337,13 @@
         const isTeamLeader = (name === "Marcel" || name === "Lukas");
 
         if (!isTeamLeader) {
-            const [newHrs, newMins] = time.split(':').map(Number);
+            const timeParts = time.split(':');
+            const newHrs = parseInt(timeParts.at(0));
+            const newMins = parseInt(timeParts.at(1));
             const newStart = newHrs * 60 + newMins;
             const newEnd = newStart + 30;
 
-            if(!appData.schedules) appData.schedules =;
+            if(!appData.schedules) appData.schedules = new Array();
 
             let conflict = false;
             let conflictName = "";
@@ -357,7 +352,9 @@
             appData.schedules.forEach(s => {
                 if (s.name === "Marcel" || s.name === "Lukas") return;
 
-                const [exHrs, exMins] = s.time.split(':').map(Number);
+                const exTimeParts = s.time.split(':');
+                const exHrs = parseInt(exTimeParts.at(0));
+                const exMins = parseInt(exTimeParts.at(1));
                 const exStart = exHrs * 60 + exMins;
                 const exEnd = exStart + 30;
 
@@ -369,12 +366,12 @@
             });
 
             if (conflict) {
-                alert(`⚠️ Buchung blockiert! ${conflictName} hat in diesem Zeitraum bereits Pause gebucht (${conflictTime} - ${add30Mins(conflictTime)} Uhr).`);
+                alert('⚠️ Buchung blockiert! ' + conflictName + ' hat in diesem Zeitraum bereits Pause gebucht (' + conflictTime + ' - ' + add30Mins(conflictTime) + ' Uhr).');
                 return;
             }
         }
 
-        if(!appData.schedules) appData.schedules =;
+        if(!appData.schedules) appData.schedules = new Array();
         appData.schedules.push({ id: Date.now(), name: name, time: time });
         saveData();
     }
@@ -385,10 +382,12 @@
     }
 
     function add30Mins(timeStr) {
-        let [hrs, mins] = timeStr.split(':').map(Number);
+        const parts = timeStr.split(':');
+        let hrs = parseInt(parts.at(0));
+        let mins = parseInt(parts.at(1));
         mins += 30;
         if (mins >= 60) { mins -= 60; hrs = (hrs + 1) % 24; }
-        return `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
+        return hrs.toString().padStart(2, '0') + ":" + mins.toString().padStart(2, '0');
     }
 
     window.onload = () => {
