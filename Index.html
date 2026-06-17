@@ -19,7 +19,7 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-color); padding: 15px; }
-       .container { max-width: 1200px; margin: 0 auto; }
+        .container { max-width: 1200px; margin: 0 auto; }
         
         header {
             display: flex;
@@ -32,85 +32,84 @@
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
         }
 
-        h1 { font-size: 18px; color: var(--primary); display: flex; align-items: center; gap: 10px; }
-       .sync-indicator { font-size: 12px; color: #16a34a; display: flex; align-items: center; gap: 5px; font-weight: bold; }
-       .user-welcome { font-size: 13px; font-weight: bold; color: #555; }
+        h1 { font-size: 20px; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .sync-indicator { font-size: 12px; color: #888; display: flex; align-items: center; gap: 5px; }
         
-       .grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .grid { display: grid; grid-template-columns: 1fr 2fr; gap: 20px; }
+        @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
 
-       .card { background: var(--card-bg); padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .card { background: var(--card-bg); padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom: 20px; }
         h2 { font-size: 16px; margin-bottom: 15px; border-bottom: 2px solid var(--border); padding-bottom: 8px; }
 
-       .form-group { margin-bottom: 15px; }
+        .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 13px; }
-        input, select { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px; background: white; -webkit-appearance: none; }
-        select:disabled { background-color: #f3f4f6; color: #374151; opacity: 1; cursor: not-allowed; }
+        input, select { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px; }
 
         button { width: 100%; padding: 12px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; }
-       .btn-primary { background: var(--primary); color: white; }
+        .btn-primary { background: var(--primary); color: white; }
         
-       .status-badge { padding: 4px 8px; border-radius: 20px; font-size: 11px; font-weight: bold; display: inline-block; }
-       .status-av { background: #dcfce7; color: var(--success); }
-       .status-mid { background: #ffedd5; color: var(--warning); }
-       .status-scr { background: #fee2e2; color: var(--danger); }
+        .status-badge { padding: 4px 8px; border-radius: 20px; font-size: 11px; font-weight: bold; }
+        .status-av { background: #dcfce7; color: var(--success); }
+        .status-mid { background: #ffedd5; color: var(--warning); }
+        .status-scr { background: #fee2e2; color: var(--danger); }
 
-       .team-member { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid var(--border); }
-       .member-info { display: flex; flex-direction: column; gap: 4px; }
-       .timer { font-family: monospace; font-weight: bold; font-size: 13px; color: #555; margin-left: 5px; }
+        .team-member { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid var(--border); }
+        .member-info { display: flex; flex-direction: column; gap: 4px; }
+        .member-row { display: flex; align-items: center; gap: 8px; }
+        .timer { font-family: monospace; font-weight: bold; font-size: 13px; color: #555; }
 
-       .actions { display: flex; gap: 4px; }
-       .btn-sm { padding: 8px 10px; font-size: 11px; width: auto; border-radius: 4px; font-weight: 600; }
-       .btn-success { background: var(--success); color: white; }
-       .btn-warning { background: var(--warning); color: white; }
-       .btn-danger { background: var(--danger); color: white; }
-        
-        #login-screen { display: flex; justify-content: center; align-items: center; height: 80vh; }
-       .login-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: center; width: 100%; max-width: 350px; }
+        .actions { display: flex; gap: 4px; }
+        .btn-sm { padding: 6px 8px; font-size: 11px; width: auto; }
+        .btn-success { background: var(--success); color: white; }
+        .btn-warning { background: var(--warning); color: white; }
+        .btn-danger { background: var(--danger); color: white; }
+        .btn-delete { background: transparent; color: #ccc; width: auto; padding: 0 5px; }
+        .btn-delete:hover { color: var(--danger); }
 
-       .schedule-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; background: var(--bg-color); margin-bottom: 8px; border-radius: 6px; }
-       .btn-link { background: none; color: #666; font-size: 12px; text-decoration: underline; padding: 0; width: auto; font-weight: normal; margin-top: 10px; border: none; }
+        .schedule-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; background: var(--bg-color); margin-bottom: 8px; border-radius: 6px; }
+        .alert-banner { background: #fff3cd; color: #856404; padding: 12px; border-radius: 8px; margin-bottom: 20px; display: none; align-items: center; gap: 10px; font-weight: 500; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div id="login-screen">
-        <div class="login-card">
-            <h2 style="border:none; margin-bottom:20px;"><i data-lucide="user"></i> Wer bist du?</h2>
-            <div class="form-group">
-                <select id="user-select" style="-webkit-appearance: listbox;"></select>
-            </div>
-            <button class="btn-primary" onclick="selectUser()">App starten</button>
-        </div>
+    <header>
+        <h1><i data-lucide="phone-call"></i> Support Pausen-Planer LIVE</h1>
+        <div class="sync-indicator"><i data-lucide="refresh-cw" id="sync-icon"></i> <span id="sync-text">Verbinden...</span></div>
+    </header>
+
+    <div class="alert-banner" id="collision-alert">
+        <i data-lucide="alert-triangle"></i> <strong>Achtung Überschneidung:</strong> Mehrere Kollegen haben zur gleichen Zeit Mittagspause eingetragen!
     </div>
 
-    <div id="app-content" style="display: none;">
-        <header>
-            <h1><i data-lucide="phone-call"></i> Support Pausen-Planer LIVE</h1>
-            <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 5px;">
-                <span class="user-welcome" id="welcome-text"></span>
-                <div class="sync-indicator"><i data-lucide="check-circle" id="sync-icon"></i> <span id="sync-text">Bereit</span></div>
-            </div>
-        </header>
-
-        <div class="grid">
+    <div class="grid">
+        <div>
             <div class="card">
-                <h2><i data-lucide="users"></i> Live-Status des Teams</h2>
-                <div id="team-list">Erstelle Team-Liste...</div>
+                <h2><i data-lucide="user-plus"></i> Kollege hinzufügen</h2>
+                <div class="form-group">
+                    <input type="text" id="new-name" placeholder="Name des Agenten">
+                </div>
+                <button class="btn-primary" onclick="addMember()"><i data-lucide="plus"></i> Hinzufügen</button>
             </div>
 
             <div class="card">
-                <h2><i data-lucide="calendar"></i> Mittagspause reservieren (30 Min)</h2>
+                <h2><i data-lucide="calendar"></i> Mittagspause planen</h2>
                 <div class="form-group">
                     <label for="sched-name">Wer?</label>
-                    <select id="sched-name" disabled></select>
+                    <select id="sched-name"></select>
                 </div>
                 <div class="form-group">
-                    <label for="sched-time">Gewünschte Startzeit</label>
+                    <label for="sched-time">Startzeit</label>
                     <input type="time" id="sched-time">
                 </div>
-                <button class="btn-primary" onclick="schedulePause()"><i data-lucide="clock"></i> Pause buchen</button>
-                <button class="btn-link" onclick="logoutUser()">Namen ändern / Abmelden</button>
+                <button class="btn-primary" onclick="schedulePause()"><i data-lucide="clock"></i> Einplanen</button>
+            </div>
+        </div>
+
+        <div>
+            <div class="card">
+                <h2><i data-lucide="users"></i> Live-Status des Teams (Aktualisiert alle 5s)</h2>
+                <div id="team-list">Lade Team-Daten...</div>
             </div>
 
             <div class="card">
@@ -122,126 +121,58 @@
 </div>
 
 <script>
-    // Hochstabile, CORS-freigegebene Cloud-Datenbank
-    const DB_URL = "https://jsonblob.com/api/jsonBlob/1339832726359056384";
+    // Einzigartige Cloud-URL für euer Team (Kostenlose Echtzeit-Key-Value-Datenbank)
+    // HINWEIS: "support_team_9921a" ist eure eindeutige ID.
+    const DB_URL = "https://kvdb.io/MN87w6yH6p8SgXbU7t6P8B/support_team_9921a";
 
-    const DEFAULT_NAMES =;
-
-    let currentUser = localStorage.getItem("pausen_planer_user") || "";
-    
-    // Lokale Fallback-Daten, um leere Listen oder Abstürze komplett zu verhindern
     let appData = {
-        team: DEFAULT_NAMES.map((name, index) => ({
-            id: index + 1,
-            name: name,
-            status: "Verfügbar",
-            timeLeft: 0,
-            lastUpdate: Date.now()
-        })),
-        schedules:
+        team: [
+            { id: 1, name: "Beispiel-Agent 1", status: "Verfügbar", timeLeft: 0, lastUpdate: Date.now() },
+            { id: 2, name: "Beispiel-Agent 2", status: "Verfügbar", timeLeft: 0, lastUpdate: Date.now() }
+        ],
+        schedules: []
     };
 
-    function initUserDropdowns() {
-        const userSelect = document.getElementById('user-select');
-        const schedSelect = document.getElementById('sched-name');
-        if (userSelect && schedSelect) {
-            const optionsHtml = DEFAULT_NAMES.map(n => `<option value="${n}">${n}</option>`).join('');
-            userSelect.innerHTML = optionsHtml;
-            schedSelect.innerHTML = optionsHtml;
-        }
-    }
-
-    function selectUser() {
-        const selected = document.getElementById('user-select').value;
-        localStorage.setItem("pausen_planer_user", selected);
-        currentUser = selected;
-        checkUserStatus();
-    }
-
-    function logoutUser() {
-        localStorage.removeItem("pausen_planer_user");
-        currentUser = "";
-        checkUserStatus();
-    }
-
-    function checkUserStatus() {
-        initUserDropdowns();
-        if (currentUser) {
-            document.getElementById('login-screen').style.display = 'none';
-            document.getElementById('app-content').style.display = 'block';
-            document.getElementById('welcome-text').innerText = `Eingeloggt als: ${currentUser}`;
-            document.getElementById('sched-name').value = currentUser;
-            
-            // Lokale Daten sofort zeichnen, um Ladeverzögerungen optisch zu überbrücken
-            renderAll();
-            loadData();
-        } else {
-            document.getElementById('login-screen').style.display = 'flex';
-            document.getElementById('app-content').style.display = 'none';
-        }
-    }
-
     async function loadData() {
-        if (!currentUser) return;
         try {
+            document.getElementById('sync-icon').style.animation = "spin 1s linear infinite";
             const response = await fetch(DB_URL);
             if (response.ok) {
-                const cloudData = await response.json();
-                // Absicherung gegen fehlerhafte oder leere Cloud-Datensätze
-                if (cloudData && Array.isArray(cloudData.team) && cloudData.team.length === DEFAULT_NAMES.length) {
-                    appData = cloudData;
-                    renderAll();
-                } else {
-                    // Falls die Cloud leer ist, überschreiben wir sie mit unseren Standardwerten
-                    await saveData();
-                }
+                appData = await response.json();
+                renderAll();
                 document.getElementById('sync-text').innerText = "Live synchronisiert";
-                document.getElementById('sync-icon').style.color = "#16a34a";
+            } else if (response.status === 404) {
+                // Falls die DB neu ist, initialen Stand hochladen
+                await saveData();
             }
         } catch (e) {
-            document.getElementById('sync-text').innerText = "Offline-Modus aktiv";
-            document.getElementById('sync-icon').style.color = "#ea580c";
+            document.getElementById('sync-text').innerText = "Verbindungsfehler!";
+        } finally {
+            document.getElementById('sync-icon').style.animation = "none";
         }
     }
 
     async function saveData() {
-        renderAll(); // Sofort lokal aktualisieren
         try {
             await fetch(DB_URL, {
-                method: 'PUT', // jsonblob.com verlangt PUT zum Überschreiben
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
+                method: 'POST',
                 body: JSON.stringify(appData)
             });
-            document.getElementById('sync-text').innerText = "Live synchronisiert";
-            document.getElementById('sync-icon').style.color = "#16a34a";
+            renderAll();
         } catch (e) {
-            console.error("Fehler beim Cloud-Speichern", e);
+            console.error("Fehler beim Speichern", e);
         }
     }
 
     function renderAll() {
         renderTeam();
         renderSchedule();
+        updateDropdowns();
     }
 
     function renderTeam() {
         const list = document.getElementById('team-list');
-        if (!list) return;
         list.innerHTML = '';
-        
-        // Defensiver Check: Falls appData.team korrumpiert wurde, repariere es selbstständig
-        if (!appData ||!Array.isArray(appData.team) || appData.team.length === 0) {
-            appData.team = DEFAULT_NAMES.map((name, index) => ({
-                id: index + 1,
-                name: name,
-                status: "Verfügbar",
-                timeLeft: 0,
-                lastUpdate: Date.now()
-            }));
-        }
         
         appData.team.forEach(member => {
             let statusClass = 'status-av';
@@ -249,38 +180,39 @@
             if(member.status === 'Bildschirmpause') statusClass = 'status-scr';
 
             let timerDisplay = '';
-            if (member.status!== 'Verfügbar') {
+            if (member.status !== 'Verfügbar') {
+                // Berechne die abgelaufene/verbleibende Zeit basierend auf dem Zeitstempel
                 const passedSeconds = Math.floor((Date.now() - member.lastUpdate) / 1000);
                 let currentTimerValue = 0;
                 
                 if (member.status === 'Mittagspause') {
-                    currentTimerValue = Math.max(-120 * 60, member.timeLeft - passedSeconds);
+                    currentTimerValue = Math.max(-120 * 60, member.timeLeft - passedSeconds); // Max 2 Std überziehen anzeigen
                 } else {
                     currentTimerValue = member.timeLeft + passedSeconds;
                 }
 
                 const mins = Math.floor(Math.abs(currentTimerValue) / 60);
                 const secs = Math.abs(currentTimerValue) % 60;
-                const sign = currentTimerValue < 0? "-" : "";
+                const sign = currentTimerValue < 0 ? "-" : "";
                 timerDisplay = `<span class="timer">${sign}${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}</span>`;
             }
 
-            const isMe = member.name === currentUser;
-            const disabledAttr = isMe? "" : "disabled style='opacity:0.3; cursor:not-allowed;'";
-
             list.innerHTML += `
-                <div class="team-member" style="${isMe? 'background: #eff6ff; border-radius: 8px; border-left: 4px solid var(--primary);' : ''}">
+                <div class="team-member">
                     <div class="member-info">
-                        <strong>${member.name} ${isMe? '(Du)' : ''}</strong>
+                        <div class="member-row">
+                            <strong>${member.name}</strong>
+                            <button class="btn-delete" onclick="deleteMember(${member.id})">×</button>
+                        </div>
                         <div>
                             <span class="status-badge ${statusClass}">${member.status}</span>
                             ${timerDisplay}
                         </div>
                     </div>
                     <div class="actions">
-                        <button class="btn-sm btn-success" ${disabledAttr} onclick="changeStatus(${member.id}, 'Verfügbar')">Bereit</button>
-                        <button class="btn-sm btn-warning" ${disabledAttr} onclick="changeStatus(${member.id}, 'Mittagspause')">Mittag</button>
-                        <button class="btn-sm btn-danger" ${disabledAttr} onclick="changeStatus(${member.id}, 'Bildschirmpause')">Bildschirm</button>
+                        <button class="btn-sm btn-success" onclick="changeStatus(${member.id}, 'Verfügbar')">Bereit</button>
+                        <button class="btn-sm btn-warning" onclick="changeStatus(${member.id}, 'Mittagspause')">Mittag</button>
+                        <button class="btn-sm btn-danger" onclick="changeStatus(${member.id}, 'Bildschirmpause')">Bildschirm</button>
                     </div>
                 </div>
             `;
@@ -290,14 +222,9 @@
 
     function renderSchedule() {
         const list = document.getElementById('schedule-list');
-        if (!list) return;
-        
-        if (!appData ||!Array.isArray(appData.schedules)) {
-            appData.schedules =;
-        }
-
         if(appData.schedules.length === 0) {
             list.innerHTML = 'Keine geplanten Pausen.';
+            document.getElementById('collision-alert').style.display = 'none';
             return;
         }
 
@@ -305,22 +232,32 @@
         appData.schedules.sort((a,b) => a.time.localeCompare(b.time));
 
         appData.schedules.forEach(s => {
-            const isMySchedule = s.name === currentUser;
-            const deleteBtn = isMySchedule? `<button style="background:none; color:red; border:none; width:auto; padding:0; display:inline;" onclick="deleteSchedule(${s.id})">×</button>` : '';
-
             list.innerHTML += `
-                <div class="schedule-item" style="border-left: 4px solid var(--warning); ${isMySchedule? 'background: #fffbfa;' : ''}">
-                    <span><strong>${s.time} - ${add30Mins(s.time)} Uhr</strong> (${s.name})</span>
-                    ${deleteBtn}
+                <div class="schedule-item" style="border-left: 4px solid var(--warning)">
+                    <span>${s.name}</span>
+                    <div>
+                        <strong>${s.time} - ${add30Mins(s.time)} Uhr</strong>
+                        <button class="btn-delete" onclick="deleteSchedule(${s.id})" style="display:inline; margin-left:10px;">×</button>
+                    </div>
                 </div>
             `;
         });
+        
+        checkCollisions();
         lucide.createIcons();
+    }
+
+    function updateDropdowns() {
+        const select = document.getElementById('sched-name');
+        select.innerHTML = '';
+        appData.team.forEach(m => {
+            select.innerHTML += `<option value="${m.name}">${m.name}</option>`;
+        });
     }
 
     function changeStatus(id, newStatus) {
         const member = appData.team.find(m => m.id === id);
-        if (!member || member.name!== currentUser) return;
+        if (!member) return;
 
         member.status = newStatus;
         member.lastUpdate = Date.now();
@@ -333,52 +270,46 @@
         saveData();
     }
 
+    function addMember() {
+        const nameInput = document.getElementById('new-name');
+        if (!nameInput.value.trim()) return;
+
+        appData.team.push({
+            id: Date.now(),
+            name: nameInput.value.trim(),
+            status: "Verfügbar",
+            timeLeft: 0,
+            lastUpdate: Date.now()
+        });
+
+        nameInput.value = '';
+        saveData();
+    }
+
+    function deleteMember(id) {
+        appData.team = appData.team.filter(m => m.id !== id);
+        saveData();
+    }
+
     function schedulePause() {
-        const name = currentUser;
+        const name = document.getElementById('sched-name').value;
         const time = document.getElementById('sched-time').value;
-        if (!time) return alert("Bitte eine Uhrzeit wählen!");
+        if (!time) return alert("Uhrzeit wählen!");
 
-        const isTeamLeader = (name === "Marcel" || name === "Lukas");
-
-        if (!isTeamLeader) {
-            const [newHrs, newMins] = time.split(':').map(Number);
-            const newStart = newHrs * 60 + newMins;
-            const newEnd = newStart + 30;
-
-            if(!appData.schedules) appData.schedules =;
-
-            let conflict = false;
-            let conflictName = "";
-            let conflictTime = "";
-
-            appData.schedules.forEach(s => {
-                if (s.name === "Marcel" || s.name === "Lukas") return;
-
-                const [exHrs, exMins] = s.time.split(':').map(Number);
-                const exStart = exHrs * 60 + exMins;
-                const exEnd = exStart + 30;
-
-                if (newStart < exEnd && newEnd > exStart) {
-                    conflict = true;
-                    conflictName = s.name;
-                    conflictTime = s.time;
-                }
-            });
-
-            if (conflict) {
-                alert(`⚠️ Buchung blockiert! ${conflictName} hat in diesem Zeitraum bereits Pause gebucht (${conflictTime} - ${add30Mins(conflictTime)} Uhr).`);
-                return;
-            }
-        }
-
-        if(!appData.schedules) appData.schedules =;
         appData.schedules.push({ id: Date.now(), name: name, time: time });
         saveData();
     }
 
     function deleteSchedule(id) {
-        appData.schedules = appData.schedules.filter(s => s.id!== id);
+        appData.schedules = appData.schedules.filter(s => s.id !== id);
         saveData();
+    }
+
+    function checkCollisions() {
+        const alertBanner = document.getElementById('collision-alert');
+        const times = appData.schedules.map(s => s.time);
+        const hasDuplicates = times.some((val, i) => times.indexOf(val) !== i);
+        alertBanner.style.display = hasDuplicates ? 'flex' : 'none';
     }
 
     function add30Mins(timeStr) {
@@ -388,10 +319,18 @@
         return `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
     }
 
+    // CSS Animation für Sync-Icon hinzufügen
+    const style = document.createElement('style');
+    style.innerHTML = '@keyframes spin { 100% { transform:rotate(360deg); } }';
+    document.head.appendChild(style);
+
+    // Initialisierung und automatische Updates
     window.onload = () => {
-        checkUserStatus();
-        setInterval(loadData, 5000); // Alle 5s im Hintergrund live abgleichen
-        setInterval(renderTeam, 1000); // Countdown flüssig jede Sekunde updaten
+        loadData();
+        // Alle 5 Sekunden die neusten Daten aus der Cloud holen
+        setInterval(loadData, 5000);
+        // Den Sekunden-Countdown lokal flüssig halten (jede Sekunde rendern)
+        setInterval(renderTeam, 1000);
     };
 </script>
 </body>
