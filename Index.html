@@ -3,293 +3,396 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Serverless Task App</title>
+    <title>Support Team Pausen-Planer LIVE</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --background: #f8fafc;
+            --bg-color: #f4f6f9;
             --card-bg: #ffffff;
-            --text: #0f172a;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
+            --text-color: #333333;
+            --primary: #2563eb;
             --success: #16a34a;
+            --warning: #ea580c;
+            --danger: #dc2626;
+            --border: #e5e7eb;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--background);
-            color: var(--text);
-            margin: 0;
-            padding: 20px;
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-color); padding: 15px; }
+       .container { max-width: 1200px; margin: 0 auto; }
+        
+        header {
             display: flex;
-            justify-content: center;
-        }
-
-       .app-container {
-            width: 100%;
-            max-width: 600px;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
             background: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            border: 1px solid var(--border);
-        }
-
-        h1 {
-            font-size: 24px;
-            margin-top: 0;
-            margin-bottom: 8px;
-            color: var(--primary);
-        }
-
-        p.subtitle {
-            color: var(--text-muted);
-            margin-bottom: 24px;
-            font-size: 14px;
-        }
-
-       .form-group {
-            margin-bottom: 16px;
-        }
-
-        label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 6px;
-            font-size: 14px;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-size: 14px;
-        }
-
-        button {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            font-size: 14px;
-            font-weight: 600;
-            border-radius: 6px;
-            cursor: pointer;
-            width: 100%;
-            transition: background-color 0.2s;
-        }
-
-        button:hover {
-            background-color: var(--primary-hover);
-        }
-
-       .status-box {
-            margin-top: 20px;
             padding: 15px;
-            border-radius: 6px;
-            background-color: #f1f5f9;
-            border: 1px solid var(--border);
-            font-size: 13px;
-            word-break: break-all;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
         }
 
-       .status-badge {
-            display: inline-block;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 11px;
-            background-color: var(--border);
-            margin-bottom: 10px;
-        }
+        h1 { font-size: 18px; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+       .sync-indicator { font-size: 12px; color: #16a34a; display: flex; align-items: center; gap: 5px; font-weight: bold; }
+       .user-welcome { font-size: 13px; font-weight: bold; color: #555; }
+        
+       .grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
 
-       .status-badge.active {
-            background-color: #dcfce7;
-            color: var(--success);
-        }
+       .card { background: var(--card-bg); padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        h2 { font-size: 16px; margin-bottom: 15px; border-bottom: 2px solid var(--border); padding-bottom: 8px; }
 
-       .action-area {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
+       .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 13px; }
+        input, select { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px; background: white; -webkit-appearance: none; }
+        select:disabled { background-color: #f3f4f6; color: #374151; opacity: 1; cursor: not-allowed; }
 
-       .action-area button {
-            flex: 1;
-        }
+        button { width: 100%; padding: 12px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; }
+       .btn-primary { background: var(--primary); color: white; }
+        
+       .status-badge { padding: 4px 8px; border-radius: 20px; font-size: 11px; font-weight: bold; display: inline-block; }
+       .status-av { background: #dcfce7; color: var(--success); }
+       .status-mid { background: #ffedd5; color: var(--warning); }
+       .status-scr { background: #fee2e2; color: var(--danger); }
 
-       .secondary-btn {
-            background-color: transparent;
-            color: var(--primary);
-            border: 1px solid var(--primary);
-        }
+       .team-member { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid var(--border); }
+       .member-info { display: flex; flex-direction: column; gap: 4px; }
+       .timer { font-family: monospace; font-weight: bold; font-size: 13px; color: #555; margin-left: 5px; }
 
-       .secondary-btn:hover {
-            background-color: #f0f5ff;
-        }
+       .actions { display: flex; gap: 4px; }
+       .btn-sm { padding: 8px 10px; font-size: 11px; width: auto; border-radius: 4px; font-weight: 600; }
+       .btn-success { background: var(--success); color: white; }
+       .btn-warning { background: var(--warning); color: white; }
+       .btn-danger { background: var(--danger); color: white; }
+        
+        #login-screen { display: flex; justify-content: center; align-items: center; height: 80vh; }
+       .login-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: center; width: 100%; max-width: 350px; }
+
+       .schedule-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; background: var(--bg-color); margin-bottom: 8px; border-radius: 6px; }
+       .btn-link { background: none; color: #666; font-size: 12px; text-decoration: underline; padding: 0; width: auto; font-weight: normal; margin-top: 10px; border: none; }
     </style>
 </head>
 <body>
 
-<div class="app-container">
-    <h1>Serverless Project App</h1>
-    <p class="subtitle">Anmeldefreie Datenpersistenz über verschlüsselte API-Transaktionen.</p>
-
-    <div class="form-group">
-        <label for="project-name">Projektname</label>
-        <input type="text" id="project-name" placeholder="z. B. Alpha-Phase">
+<div class="container">
+    <div id="login-screen">
+        <div class="login-card">
+            <h2 style="border:none; margin-bottom:20px;"><i data-lucide="user"></i> Wer bist du?</h2>
+            <div class="form-group">
+                <select id="user-select" style="-webkit-appearance: listbox;"></select>
+            </div>
+            <button class="btn-primary" onclick="selectUser()">App starten</button>
+        </div>
     </div>
 
-    <div class="form-group">
-        <label for="project-desc">Projektbeschreibung</label>
-        <textarea id="project-desc" rows="3" placeholder="Ziele und Meilensteine..."></textarea>
-    </div>
+    <div id="app-content" style="display: none;">
+        <header>
+            <h1><i data-lucide="phone-call"></i> Support Pausen-Planer LIVE</h1>
+            <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 5px;">
+                <span class="user-welcome" id="welcome-text"></span>
+                <div class="sync-indicator"><i data-lucide="check-circle" id="sync-icon"></i> <span id="sync-text">Bereit</span></div>
+            </div>
+        </header>
 
-    <button id="btn-save" onclick="saveToCloud()">Projekt in der Cloud speichern</button>
+        <div class="grid">
+            <div class="card">
+                <h2><i data-lucide="users"></i> Live-Status des Teams</h2>
+                <div id="team-list">Erstelle Team-Liste...</div>
+            </div>
 
-    <div class="action-area" id="extra-actions" style="display: none;">
-        <button class="secondary-btn" onclick="loadFromCloud()">Daten neu laden</button>
-        <button class="secondary-btn" onclick="updateOnCloud()">Daten aktualisieren</button>
-    </div>
+            <div class="card">
+                <h2><i data-lucide="calendar"></i> Mittagspause reservieren (30 Min)</h2>
+                <div class="form-group">
+                    <label for="sched-name">Wer?</label>
+                    <select id="sched-name" disabled></select>
+                </div>
+                <div class="form-group">
+                    <label for="sched-time">Gewünschte Startzeit</label>
+                    <input type="time" id="sched-time">
+                </div>
+                <button class="btn-primary" onclick="schedulePause()"><i data-lucide="clock"></i> Pause buchen</button>
+                <button class="btn-link" onclick="logoutUser()">Namen ändern / Abmelden</button>
+            </div>
 
-    <div class="status-box">
-        <div id="status-indicator" class="status-badge">Inaktiv</div>
-        <div id="status-text">Geben Sie Daten ein und klicken Sie auf Speichern, um eine Cloud-Instanz zu erzeugen.</div>
+            <div class="card">
+                <h2><i data-lucide="list-ordered"></i> Geplante Mittagspausen für heute</h2>
+                <div id="schedule-list">Keine geplanten Pausen.</div>
+            </div>
+        </div>
     </div>
 </div>
 
 <script>
-    // Integration der zuvor geprüften und freigegebenen API-Klasse
-    class SafeJSONBlobAPI {
-        static BASE_URL = 'https://jsonblob.com/api/jsonBlob';
+    // Hochstabile, CORS-freigegebene Cloud-Datenbank
+    const DB_URL = "https://jsonblob.com/api/jsonBlob/1339832726359056384";
 
-        static async createDataset(initialData) {
-            const response = await fetch(this.BASE_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(initialData)
-            });
-            if (!response.ok) throw new Error(`Status ${response.status}`);
-            const blobId = response.headers.get('X-jsonblob') || response.headers.get('x-jsonblob');
-            const responseData = await response.json();
-            return { blobId, data: responseData };
-        }
+    const DEFAULT_NAMES =;
 
-        static async readDataset(blobId) {
-            const response = await fetch(`${this.BASE_URL}/${blobId}`, {
-                method: 'GET',
-                headers: { 'Accept': 'application/json' }
-            });
-            if (!response.ok) throw new Error(`Status ${response.status}`);
-            return await response.json();
-        }
+    let currentUser = localStorage.getItem("pausen_planer_user") || "";
+    
+    // Lokale Fallback-Daten, um leere Listen oder Abstürze komplett zu verhindern
+    let appData = {
+        team: DEFAULT_NAMES.map((name, index) => ({
+            id: index + 1,
+            name: name,
+            status: "Verfügbar",
+            timeLeft: 0,
+            lastUpdate: Date.now()
+        })),
+        schedules:
+    };
 
-        static async updateDataset(blobId, updatedData) {
-            const response = await fetch(`${this.BASE_URL}/${blobId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(updatedData)
-            });
-            if (!response.ok) throw new Error(`Status ${response.status}`);
-            return await response.json();
+    function initUserDropdowns() {
+        const userSelect = document.getElementById('user-select');
+        const schedSelect = document.getElementById('sched-name');
+        if (userSelect && schedSelect) {
+            const optionsHtml = DEFAULT_NAMES.map(n => `<option value="${n}">${n}</option>`).join('');
+            userSelect.innerHTML = optionsHtml;
+            schedSelect.innerHTML = optionsHtml;
         }
     }
 
-    let currentBlobId = null;
+    function selectUser() {
+        const selected = document.getElementById('user-select').value;
+        localStorage.setItem("pausen_planer_user", selected);
+        currentUser = selected;
+        checkUserStatus();
+    }
 
-    // Funktion zum erstmaligen Speichern und Erzeugen der Cloud-Ressource
-    async function saveToCloud() {
-        const name = document.getElementById('project-name').value.trim();
-        const desc = document.getElementById('project-desc').value.trim();
+    function logoutUser() {
+        localStorage.removeItem("pausen_planer_user");
+        currentUser = "";
+        checkUserStatus();
+    }
 
-        if (!name ||!desc) {
-            updateStatus('Fehler', 'Bitte füllen Sie beide Felder aus.', false);
+    function checkUserStatus() {
+        initUserDropdowns();
+        if (currentUser) {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('app-content').style.display = 'block';
+            document.getElementById('welcome-text').innerText = `Eingeloggt als: ${currentUser}`;
+            document.getElementById('sched-name').value = currentUser;
+            
+            // Lokale Daten sofort zeichnen, um Ladeverzögerungen optisch zu überbrücken
+            renderAll();
+            loadData();
+        } else {
+            document.getElementById('login-screen').style.display = 'flex';
+            document.getElementById('app-content').style.display = 'none';
+        }
+    }
+
+    async function loadData() {
+        if (!currentUser) return;
+        try {
+            const response = await fetch(DB_URL);
+            if (response.ok) {
+                const cloudData = await response.json();
+                // Absicherung gegen fehlerhafte oder leere Cloud-Datensätze
+                if (cloudData && Array.isArray(cloudData.team) && cloudData.team.length === DEFAULT_NAMES.length) {
+                    appData = cloudData;
+                    renderAll();
+                } else {
+                    // Falls die Cloud leer ist, überschreiben wir sie mit unseren Standardwerten
+                    await saveData();
+                }
+                document.getElementById('sync-text').innerText = "Live synchronisiert";
+                document.getElementById('sync-icon').style.color = "#16a34a";
+            }
+        } catch (e) {
+            document.getElementById('sync-text').innerText = "Offline-Modus aktiv";
+            document.getElementById('sync-icon').style.color = "#ea580c";
+        }
+    }
+
+    async function saveData() {
+        renderAll(); // Sofort lokal aktualisieren
+        try {
+            await fetch(DB_URL, {
+                method: 'PUT', // jsonblob.com verlangt PUT zum Überschreiben
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(appData)
+            });
+            document.getElementById('sync-text').innerText = "Live synchronisiert";
+            document.getElementById('sync-icon').style.color = "#16a34a";
+        } catch (e) {
+            console.error("Fehler beim Cloud-Speichern", e);
+        }
+    }
+
+    function renderAll() {
+        renderTeam();
+        renderSchedule();
+    }
+
+    function renderTeam() {
+        const list = document.getElementById('team-list');
+        if (!list) return;
+        list.innerHTML = '';
+        
+        // Defensiver Check: Falls appData.team korrumpiert wurde, repariere es selbstständig
+        if (!appData ||!Array.isArray(appData.team) || appData.team.length === 0) {
+            appData.team = DEFAULT_NAMES.map((name, index) => ({
+                id: index + 1,
+                name: name,
+                status: "Verfügbar",
+                timeLeft: 0,
+                lastUpdate: Date.now()
+            }));
+        }
+        
+        appData.team.forEach(member => {
+            let statusClass = 'status-av';
+            if(member.status === 'Mittagspause') statusClass = 'status-mid';
+            if(member.status === 'Bildschirmpause') statusClass = 'status-scr';
+
+            let timerDisplay = '';
+            if (member.status!== 'Verfügbar') {
+                const passedSeconds = Math.floor((Date.now() - member.lastUpdate) / 1000);
+                let currentTimerValue = 0;
+                
+                if (member.status === 'Mittagspause') {
+                    currentTimerValue = Math.max(-120 * 60, member.timeLeft - passedSeconds);
+                } else {
+                    currentTimerValue = member.timeLeft + passedSeconds;
+                }
+
+                const mins = Math.floor(Math.abs(currentTimerValue) / 60);
+                const secs = Math.abs(currentTimerValue) % 60;
+                const sign = currentTimerValue < 0? "-" : "";
+                timerDisplay = `<span class="timer">${sign}${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}</span>`;
+            }
+
+            const isMe = member.name === currentUser;
+            const disabledAttr = isMe? "" : "disabled style='opacity:0.3; cursor:not-allowed;'";
+
+            list.innerHTML += `
+                <div class="team-member" style="${isMe? 'background: #eff6ff; border-radius: 8px; border-left: 4px solid var(--primary);' : ''}">
+                    <div class="member-info">
+                        <strong>${member.name} ${isMe? '(Du)' : ''}</strong>
+                        <div>
+                            <span class="status-badge ${statusClass}">${member.status}</span>
+                            ${timerDisplay}
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <button class="btn-sm btn-success" ${disabledAttr} onclick="changeStatus(${member.id}, 'Verfügbar')">Bereit</button>
+                        <button class="btn-sm btn-warning" ${disabledAttr} onclick="changeStatus(${member.id}, 'Mittagspause')">Mittag</button>
+                        <button class="btn-sm btn-danger" ${disabledAttr} onclick="changeStatus(${member.id}, 'Bildschirmpause')">Bildschirm</button>
+                    </div>
+                </div>
+            `;
+        });
+        lucide.createIcons();
+    }
+
+    function renderSchedule() {
+        const list = document.getElementById('schedule-list');
+        if (!list) return;
+        
+        if (!appData ||!Array.isArray(appData.schedules)) {
+            appData.schedules =;
+        }
+
+        if(appData.schedules.length === 0) {
+            list.innerHTML = 'Keine geplanten Pausen.';
             return;
         }
 
-        updateStatus('Übertrage...', 'Erstelle verschlüsselten Blob auf jsonblob.com...', false);
+        list.innerHTML = '';
+        appData.schedules.sort((a,b) => a.time.localeCompare(b.time));
 
-        try {
-            const payload = {
-                title: name,
-                description: desc,
-                timestamp: new Date().toISOString()
-            };
+        appData.schedules.forEach(s => {
+            const isMySchedule = s.name === currentUser;
+            const deleteBtn = isMySchedule? `<button style="background:none; color:red; border:none; width:auto; padding:0; display:inline;" onclick="deleteSchedule(${s.id})">×</button>` : '';
 
-            const result = await SafeJSONBlobAPI.createDataset(payload);
-            currentBlobId = result.blobId;
-
-            updateStatus('Aktiv', `Erfolgreich gespeichert!\nBlob-ID: ${currentBlobId}`, true);
-            document.getElementById('extra-actions').style.display = 'flex';
-            document.getElementById('btn-save').style.display = 'none';
-        } catch (error) {
-            updateStatus('Fehler', `Speichern fehlgeschlagen: ${error.message}`, false);
-        }
+            list.innerHTML += `
+                <div class="schedule-item" style="border-left: 4px solid var(--warning); ${isMySchedule? 'background: #fffbfa;' : ''}">
+                    <span><strong>${s.time} - ${add30Mins(s.time)} Uhr</strong> (${s.name})</span>
+                    ${deleteBtn}
+                </div>
+            `;
+        });
+        lucide.createIcons();
     }
 
-    // Funktion zum erneuten Auslesen der Daten aus der Cloud
-    async function loadFromCloud() {
-        if (!currentBlobId) return;
+    function changeStatus(id, newStatus) {
+        const member = appData.team.find(m => m.id === id);
+        if (!member || member.name!== currentUser) return;
 
-        updateStatus('Lese...', 'Frage aktuellen Cloud-Zustand ab...', true);
-
-        try {
-            const data = await SafeJSONBlobAPI.readDataset(currentBlobId);
-            document.getElementById('project-name').value = data.title || '';
-            document.getElementById('project-desc').value = data.description || '';
-            updateStatus('Aktiv', `Daten erfolgreich geladen.\nLetzter Stand vom Server: ${data.timestamp}`, true);
-        } catch (error) {
-            updateStatus('Fehler', `Fehler beim Laden: ${error.message}`, false);
-        }
-    }
-
-    // Funktion zum Aktualisieren der bereits existierenden Cloud-Ressource
-    async function updateOnCloud() {
-        if (!currentBlobId) return;
-
-        const name = document.getElementById('project-name').value.trim();
-        const desc = document.getElementById('project-desc').value.trim();
-
-        updateStatus('Sende...', 'Aktualisiere bestehende Cloud-Instanz...', true);
-
-        try {
-            const updatedPayload = {
-                title: name,
-                description: desc,
-                timestamp: new Date().toISOString()
-            };
-
-            const data = await SafeJSONBlobAPI.updateDataset(currentBlobId, updatedPayload);
-            updateStatus('Aktiv', `Aktualisierung erfolgreich durchgeführt!\nServer-Zeitstempel: ${data.timestamp}`, true);
-        } catch (error) {
-            updateStatus('Fehler', `Aktualisierung fehlgeschlagen: ${error.message}`, false);
-        }
-    }
-
-    // Hilfsfunktion zur UI-Zustandsvisualisierung
-    function updateStatus(badgeText, mainText, isActive) {
-        const badge = document.getElementById('status-indicator');
-        const textElement = document.getElementById('status-text');
-
-        badge.textContent = badgeText;
-        textElement.textContent = mainText;
-
-        if (isActive) {
-            badge.className = 'status-badge active';
+        member.status = newStatus;
+        member.lastUpdate = Date.now();
+        
+        if (newStatus === 'Mittagspause') {
+            member.timeLeft = 30 * 60; 
         } else {
-            badge.className = 'status-badge';
+            member.timeLeft = 0;
         }
+        saveData();
     }
-</script>
 
+    function schedulePause() {
+        const name = currentUser;
+        const time = document.getElementById('sched-time').value;
+        if (!time) return alert("Bitte eine Uhrzeit wählen!");
+
+        const isTeamLeader = (name === "Marcel" || name === "Lukas");
+
+        if (!isTeamLeader) {
+            const [newHrs, newMins] = time.split(':').map(Number);
+            const newStart = newHrs * 60 + newMins;
+            const newEnd = newStart + 30;
+
+            if(!appData.schedules) appData.schedules =;
+
+            let conflict = false;
+            let conflictName = "";
+            let conflictTime = "";
+
+            appData.schedules.forEach(s => {
+                if (s.name === "Marcel" || s.name === "Lukas") return;
+
+                const [exHrs, exMins] = s.time.split(':').map(Number);
+                const exStart = exHrs * 60 + exMins;
+                const exEnd = exStart + 30;
+
+                if (newStart < exEnd && newEnd > exStart) {
+                    conflict = true;
+                    conflictName = s.name;
+                    conflictTime = s.time;
+                }
+            });
+
+            if (conflict) {
+                alert(`⚠️ Buchung blockiert! ${conflictName} hat in diesem Zeitraum bereits Pause gebucht (${conflictTime} - ${add30Mins(conflictTime)} Uhr).`);
+                return;
+            }
+        }
+
+        if(!appData.schedules) appData.schedules =;
+        appData.schedules.push({ id: Date.now(), name: name, time: time });
+        saveData();
+    }
+
+    function deleteSchedule(id) {
+        appData.schedules = appData.schedules.filter(s => s.id!== id);
+        saveData();
+    }
+
+    function add30Mins(timeStr) {
+        let [hrs, mins] = timeStr.split(':').map(Number);
+        mins += 30;
+        if (mins >= 60) { mins -= 60; hrs = (hrs + 1) % 24; }
+        return `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
+    }
+
+    window.onload = () => {
+        checkUserStatus();
+        setInterval(loadData, 5000); // Alle 5s im Hintergrund live abgleichen
+        setInterval(renderTeam, 1000); // Countdown flüssig jede Sekunde updaten
+    };
+</script>
 </body>
 </html>
