@@ -122,9 +122,10 @@
 </div>
 
 <script>
-    // Hochstabile, offene Echtzeit-Datenbank (CORS-freundlich für alle Browser-Arten) [1]
+    // Offene Echtzeit-Datenbank (CORS-freundlich) [1, 2]
     const DB_URL = "https://kvdb.io/MN87w6yH6p8SgXbU7t6P8B/support_team_9921a";
 
+    // JETZT KORREKT BEFÜLLT: Alle Namen
     const DEFAULT_NAMES =;
 
     let currentUser = localStorage.getItem("pausen_planer_user") || "";
@@ -172,7 +173,7 @@
             document.getElementById('welcome-text').innerText = `Eingeloggt als: ${currentUser}`;
             document.getElementById('sched-name').value = currentUser;
             
-            // Offline-First: Buttons sofort anzeigen [1]
+            // Offline-First: Buttons sofort zeichnen, ohne Verzögerung [1]
             renderAll();
             loadData();
         } else {
@@ -196,7 +197,6 @@
                 document.getElementById('sync-text').innerText = "Live synchronisiert";
                 document.getElementById('sync-icon').style.color = "#16a34a";
             } else if (response.status === 404) {
-                // Falls die Datenbank neu aufgesetzt werden muss, schreiben wir unsere Werte hoch
                 await saveData();
             }
         } catch (e) {
